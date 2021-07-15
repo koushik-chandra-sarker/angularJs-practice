@@ -1,0 +1,11 @@
+Name: <input type="text" ng-model="name" autocomplete="off">
+<br>
+{{name}}
+<br>
+<ul>
+    <li ng-repeat="person in Persons">{{person}}</li>
+</ul>
+
+<ul>
+    <li ng-repeat="customer in Customers | filter:name | orderBy:'name'">{{customer.name}} - {{customer.city}}</li>
+</ul>

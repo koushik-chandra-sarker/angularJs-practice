@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="routeApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Home Page</h2>
+
+
+    <h2>View Placeholder</h2>
+    <div ng-view></div>
+
+    <Script>
+
+        var routeApp = angular.module('routeApp', ["ngRoute"])
+
+        routeApp.config(function ($routeProvider) {
+            $routeProvider
+                .when('/view1', {
+                    controller: 'controller1',
+                    templateUrl:"view1.html"
+                })
+                .when("/view2", {
+                    controller: 'controller1',
+                    templateUrl:"view2.html"
+                })
+                .otherwise({ redirectTo: "/view1" });
+
+        })
+
+        routeApp.factory('simplefactory', function(){
+            var Customers = [
+                { name: 'Sujit', city: 'dhaka' },
+                { name: 'Ovijit', city: 'Mymenshing' },
+                { name: 'Didar', city: 'khulna' }
+            ];
+            var factory ={};
+            factory.getCustomer = function(){
+                return Customers;
+            }
+            factory.postCustomer = function(){
+
+            }
+
+            return factory;
+        })
+
+        routeApp.controller('controller1', function ($scope, simplefactory) {
+            $scope.Customers = []
+            init()
+            function init(){
+                $scope.Customers = simplefactory.getCustomer()
+            }
+            $scope.addCustomer = function(){
+            
+                $scope.Customers.push(
+                    {
+                        name: $scope.newCustomer.name,
+                        city: $scope.newCustomer.city
+                    }
+                   
+                )   
+                console.log($scope.Customers)
+            }
+        });
+
+
+
+    </Script>
+</body>
+
+</html>

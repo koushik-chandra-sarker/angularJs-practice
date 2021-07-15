@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testapp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJs Practice</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="main.js"></script>
+
+</head>
+
+<body ng-init="
+    Persons=['Abir','sumit','rifat', 'bishajit'];
+    Customers = [{name:'Sujit', city: 'dhaka'}, {name:'Ovijit', city: 'Mymenshing'}, {name:'Didar', city: 'khulna'}]
+">
+
+    Name: <input type="text" ng-model="name" autocomplete="off">
+    <br>
+    {{name}}
+    <br>
+    <ul>
+        <li ng-repeat="person in Persons">{{person}}</li>
+    </ul>
+
+    <!-- <ul>
+        <li ng-repeat="customer in Customers | filter:name | orderBy:'name'">{{customer.name}} - {{customer.city}}</li>
+    </ul>
+    <br> -->
+
+    <div ng-controller="simpleController">
+        <ul>
+            <li ng-repeat="user in Users">{{user.name}} - {{user.city}}</li>
+        </ul>
+    </div>
+
+    <div ng-controller="simpleController1">
+        <ul>
+            <li ng-repeat="user in Users">{{user.name}} - {{user.city}}</li>
+        </ul>
+    </div>
+
+
+
+    <script type="text/javascript">
+        angular.module('testapp', [])
+            .controller('simpleController', simpleController)
+            .controller('simpleController1', simpleController1);
+
+        function simpleController($scope) {
+            $scope.Users = [
+                { name: 'Sujit', city: 'dhaka' },
+                { name: 'Ovijit', city: 'Mymenshing' },
+                { name: 'Didar', city: 'khulna' }
+            ];
+        }
+        function simpleController1($scope) {
+            $scope.Users = [
+                { name: 'Sujitsdfs', city: 'dhaka' },
+                { name: 'Ovijit', city: 'Mymenshing' },
+                { name: 'Didar', city: 'khulna' }
+            ];
+            
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+<ul>
+    <li ng-repeat="c in Customers">{{c.name}} - {{c.city}}</li>
+</ul>
+
+
+Customer Name : <input type="text" ng-model='newCustomer.name' name="" id=""> <br>
+Customer City : <input type="text" ng-model='newCustomer.city' name="" id="">
+<button ng-click="addCustomer()">Add Customer</button>
+<br>
+<a href="#!view2"> View 2</a>

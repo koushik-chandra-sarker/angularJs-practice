@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='DemoApp'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest api & angular Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="app.js"></script>
+
+</head>
+
+<body>
+    <app-nav data="{title:'Rest Api & AngularJs Demo'}"></app-nav>
+
+    <div class="container mt-4" ng-Controller="userController">
+
+
+        <div class="alert alert-primary text-center" role="alert">
+            <h3>Users</h3>
+        </div>
+        <div class="row" ng-show="!singleUser">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-primary " ng-click="add()">add</button>
+            </div>
+        </div>
+        <form ng-submit="update(singleUser)">
+            <div class="row" ng-show="singleUser">
+
+                <div class="col-md-3 mb-3">
+                    <input ng-model="singleUser.name" type="text" class="form-control" id="namefield"
+                        placeholder="User's name">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input ng-model="singleUser.email" type="email" required class="form-control" id="emailfield"
+                        placeholder="name@example.com">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input ng-model="singleUser.phone" type="number" class="form-control" id="phonefield"
+                        placeholder="01601461011">
+                </div>
+                <div class="col-md-3 mb-3 d-flex justify-content-around">
+                    <button type="submit" class="btn btn-primary"> Save</button>
+                    <button class="btn btn-secondary" ng-click="cancal()"> Cancel</button>
+                </div>
+
+
+            </div>
+        </form>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item" ng-repeat="user in users">
+                <h2 class="accordion-header" id="heading{{user.id}}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{user.id}}" aria-expanded="true" aria-controls="collapseOne">
+
+                        <strong class="pe-2">Id: </strong> {{user.id}}
+
+                        <strong class="ps-5 pe-2">Username: </strong> {{user.username}}
+
+                    </button>
+                </h2>
+                <div id="collapse{{user.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{user.id}}"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <span>Name: {{user.name}}</span> <br>
+                        <span>email: {{user.email}}</span> <br>
+                        <span>phone: {{user.phone}}</span> <br>
+                    </div>
+                    <div class="p-3">
+                        <button class=" btn btn-warning me-2" ng-click="edit(user)">Edit</button>
+                        <button class=" btn btn-danger" ng-click="delete($index)">Delete</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>
